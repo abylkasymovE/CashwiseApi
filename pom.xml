@@ -111,6 +111,12 @@
             <version>5.2.3</version>
         </dependency>
 
+        <dependency>
+            <groupId>net.masterthought</groupId>
+            <artifactId>maven-cucumber-reporting</artifactId>
+            <version>5.4.0</version>
+        </dependency>
+
 
     </dependencies>
 
@@ -129,11 +135,28 @@
                     </includes>
                 </configuration>
             </plugin>
-<!--            <plugin>-->
-<!--&lt;!&ndash;                <groupId>net.masterthought</groupId>&ndash;&gt;-->
-<!--&lt;!&ndash;                <artifactId>maven-cucumber-reporting</artifactId>&ndash;&gt;-->
-<!--&lt;!&ndash;                <version>5.8.1</version>&ndash;&gt;-->
-<!--            </plugin>-->
+            <plugin>
+                <groupId>net.masterthought</groupId>
+                <artifactId>maven-cucumber-reporting</artifactId>
+                <version>5.4.0</version>
+                <executions>
+                    <execution>
+                        <id>generate-cucumber-report</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <projectName>CashwiseApiAutomation</projectName>
+                            <outputDirectory>${project.build.directory}/cucumberReports</outputDirectory>
+                            <inputDirectory>${project.build.directory}</inputDirectory>
+                            <jsonFiles>
+                                <param>**/cucumber.json</param>
+                            </jsonFiles>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
     </build>
 
